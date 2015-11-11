@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.ispikit.cordova"
+        version="2.0.0">
+    <engines>
+        <engine name="cordova" version=">=3.3.0" />
+    </engines>
+    <name>Ispikit</name>
+    <description>Ispikit pronunciation assessment plugin for Cordova/Phonegap</description>
+    <author>Sylvain Chevalier</author>
+    <keywords>english,chinese,pronunciation,assessment</keywords>
+    <license>Apache 2.0 License</license>
+    <js-module src="ispikit.js" name="ispikit">
+        <clobbers target="ispikit" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="IspikitCordovaPlugin">
+                <param name="ios-package" value="IspikitCordovaPlugin" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/IspikitCordovaPlugin.h" />
+        <source-file src="src/ios/IspikitCordovaPlugin.m" />
+
+        <header-file src="src/ios/ISTAnalyzer.h" />
+        <source-file src="src/ios/libupal.a" framework="true" />
+        <source-file src="src/ios/libsphinxbase.a" framework="true" />
+        <source-file src="src/ios/libpocketsphinx.a" framework="true" />
+        <source-file src="src/ios/libprotobuf-lite.a" framework="true" />
+        <source-file src="src/ios/libboost_filesystem.a" framework="true" />
+        <source-file src="src/ios/libboost_system.a" framework="true" />
+        <source-file src="src/ios/libboost_thread.a" framework="true" />
+        <resource-file src="src/ios/libdictionary.so" />
+        <resource-file src="res/am/libres1.so" />
+        <resource-file src="res/am/libres2.so" />
+        <resource-file src="res/am/libres3.so" />
+        <resource-file src="res/am/libres4.so" />
+        <resource-file src="res/am/libres5.so" />
+        <resource-file src="res/am/libres6.so" />
+        <resource-file src="res/am/libres7.so" />
+        <resource-file src="res/am/libres8.so" />
+        <resource-file src="res/am/libres9.so" />
+        <resource-file src="res/am/libres10.so" />
+
+        <framework src="libstdc++.dylib" />
+        <framework src="AudioToolbox.framework" />
+    </platform>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SimpleIspikitWrapper">
+                <param name="android-package" value="com.ispikit.simplelibrary.SimpleIspikitWrapper"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/SimpleIspikitWrapper.java" target-dir="src/com/ispikit/simplelibrary" />
+        <source-file src="src/android/libs/x86/libupal.so" target-dir="libs/x86/" />
+        <source-file src="src/android/libs/armeabi/libupal.so" target-dir="libs/armeabi/" />
+        <source-file src="src/android/libs/armeabi/libupal-armeabi-v7a.so" target-dir="libs/armeabi/" />
+        <source-file src="src/ios/libdictionary.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres1.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres2.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres3.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres4.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres5.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres6.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres7.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres8.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres9.so" target-dir="libs/x86/" />
+        <source-file src="res/am/libres10.so" target-dir="libs/x86/" />
+        <source-file src="src/ios/libdictionary.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres1.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres2.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres3.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres4.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres5.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres6.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres7.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres8.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres9.so" target-dir="libs/armeabi/" />
+        <source-file src="res/am/libres10.so" target-dir="libs/armeabi/" />
+    </platform>
+    <info>More information on http://ispikit.com</info>
+</plugin>
