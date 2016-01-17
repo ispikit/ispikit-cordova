@@ -56,7 +56,7 @@ cordova plugin add cordova-plugin-device cordova-plugin-console
 ```
 * Add the Ispikit plugin
 ```
-cordova plugin add https://github.com/ispikit/ispikit-cordova-plugin.git
+cordova plugin add https://github.com/ispikit/ispikit-cordova.git
 ```
 * Replace `www/index.html` and `www/js/index.js` from your `myapp` app by the ones in the example directory of the plugin
 * For Android, add the permission to record audio in `platforms/android/AndroidManifest.xml`
