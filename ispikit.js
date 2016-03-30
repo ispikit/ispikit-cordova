@@ -1,7 +1,7 @@
 /*global cordova*/
 cordova.define("cordova/plugin/ispikit",
     function (require, exports, module) {
-        var serviceName = (device.platform == "Android") ? "SimpleIspikitWrapper" : "IspikitCordovaPlugin";
+        var serviceName = (device.platform == "Android") ? "IspikitWrapper" : "IspikitCordovaPlugin";
         var noAudioPlayer = (device.platform == "Android");
         var exec = cordova.require('cordova/exec');
         function init(win, fail) {

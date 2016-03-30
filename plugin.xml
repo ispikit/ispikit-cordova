@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="com.ispikit.cordova"
-        version="2.0.0">
+        version="2.1.0">
     <engines>
         <engine name="cordova" version=">=3.3.0" />
     </engines>
@@ -48,11 +48,11 @@
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="SimpleIspikitWrapper">
-                <param name="android-package" value="com.ispikit.simplelibrary.SimpleIspikitWrapper"/>
+            <feature name="IspikitWrapper">
+                <param name="android-package" value="com.ispikit.library.IspikitWrapper"/>
             </feature>
         </config-file>
-        <source-file src="src/android/SimpleIspikitWrapper.java" target-dir="src/com/ispikit/simplelibrary" />
+        <source-file src="src/android/IspikitWrapper.java" target-dir="src/com/ispikit/simplelibrary" />
         <source-file src="src/android/libs/x86/libupal.so" target-dir="libs/x86/" />
         <source-file src="src/android/libs/armeabi/libupal.so" target-dir="libs/armeabi/" />
         <source-file src="src/android/libs/armeabi/libupal-armeabi-v7a.so" target-dir="libs/armeabi/" />

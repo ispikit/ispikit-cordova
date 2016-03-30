@@ -1,4 +1,4 @@
-package com.ispikit.simplelibrary;
+package com.ispikit.library;
 
 import java.io.IOException;
 import org.json.JSONArray;
@@ -16,7 +16,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.PluginResult.Status;
 
-public class SimpleIspikitWrapper extends CordovaPlugin {
+public class IspikitWrapper extends CordovaPlugin {
 
     /////////////////////////////////////////////////////////////
     //
@@ -38,7 +38,7 @@ public class SimpleIspikitWrapper extends CordovaPlugin {
     private static CallbackContext m_NewWordsCallbackContext;
     private static CallbackContext m_CompletionCallbackContext;
     private static CallbackContext m_ResultCallbackContext;
-    private static final String LOGTAG = "SimpleIspikitWrapper";
+    private static final String LOGTAG = "IspikitWrapper";
 
     private static final String INIT = "init";
     private static final String START = "start";
