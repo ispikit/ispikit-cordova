@@ -174,6 +174,6 @@ Stop playing back the URL corresponding to the given id.
 
 ## 5. Notes
 
-* On Android, do not forget to set the permission to record audio (see section 3.).
+* On Android, do not forget to set the permission to record audio (see section 3.). Also, on Android 6+, user must grant permission explicitly. The plugin includes a standard request modal for that, you can modify it if necessary in `./src/android/SimpleIspikitWrapper.java`. Audio recording permission should be granted before plugin is initialized.
 * On Android, in the emulator, audio recording is not working properly. You can use and test the app, but the recording and analysis results are not meaningful.
 

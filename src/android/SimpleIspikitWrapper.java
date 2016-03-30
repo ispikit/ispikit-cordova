@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -52,6 +53,9 @@ public class SimpleIspikitWrapper extends CordovaPlugin {
     private static final String STARTPLAYBACK = "startPlayback";
     private static final String STOPPLAYBACK = "stopPlayback";
 
+    public static final String RECORD_AUDIO = "android.permission.RECORD_AUDIO";
+    public static final int REQUEST_CODE = 0;
+
     private native boolean Init(String base_path);
     private native boolean StopRecording(boolean force);
     private native boolean StartRecognition();
@@ -76,11 +80,21 @@ public class SimpleIspikitWrapper extends CordovaPlugin {
 	try {
 	    if (INIT.equals(action)) {
 		m_InitCallbackContext = callbackContext;
-		cordova.getThreadPool().execute(new Runnable() {
-			public void run() {
-			    Init();
-			}
-		    });			
+		// On recent version of Android, permission
+		// must be explicitly given by user.
+		// See onRequestPermissionResult below
+		if(cordova.hasPermission(RECORD_AUDIO))
+		    {
+			cordova.getThreadPool().execute(new Runnable() {
+				public void run() {
+				    Init();
+				}
+			    });
+		    }
+		else
+		    {
+			cordova.requestPermission(this, REQUEST_CODE, RECORD_AUDIO);
+		    }
 	    } else if (START.equals(action)) {
 		cordova.getThreadPool().execute(new Runnable() {
 			public void run() {
@@ -212,6 +226,30 @@ public class SimpleIspikitWrapper extends CordovaPlugin {
     }
     public void setPlaybackDoneHandler(Handler h) {
 	m_HandlerPlaybackDone = h;
+    }
+
+    @Override
+    public void onRequestPermissionResult(int requestCode, String[] permissions,
+					  int[] grantResults) throws JSONException
+    {
+	for(int r:grantResults)
+	    {
+		if(r == PackageManager.PERMISSION_DENIED)
+		    {
+			m_InitCallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "Permission Denied"));
+			return;
+		    }
+	    }
+	switch(requestCode)
+	    {
+	    case REQUEST_CODE:
+		cordova.getThreadPool().execute(new Runnable() {
+			public void run() {
+			    Init();
+			}
+		    });
+		break;
+	    }
     }
     /**************************************************************
      * *
